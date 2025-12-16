@@ -91,16 +91,72 @@ export struct MinePage {
   ]
 
   // 关于我们弹窗是否显示
-  @State showAboutDialog: boolean = true
+  @State showAboutDialog: boolean = false
 
   // 退出登录弹窗是否显示
-  @State showLogoutDialog: boolean = true
+  @State showLogoutDialog: boolean = false
 
-  // ... 其他方法保持不变 ...
+  // 登录跳转
+  loginAction() {
+    router.pushUrl({ url: 'pages/LoginPage' })
+  }
+
+  // 显示退出确认弹窗
+  showLogoutConfirm() {
+    this.showLogoutDialog = true
+  }
+
+  // 执行退出登录
+  confirmLogout() {
+    this.userInfo = {
+      avatar: $r('app.media.touxiang'),
+      nickName: '用户昵称',
+      phone: '138****8888',
+      isLogin: false
+    }
+    this.showLogoutDialog = false
+    promptAction.showToast({ message: '已退出登录', duration: 2000 })
+  }
 
   build() {
     Column() {
-      // ... 顶部用户信息区域保持不变 ...
+      // 用户信息区域
+      Column() {
+        Row() {
+          // 用户头像
+          Image(this.userInfo.isLogin ? this.userInfo.avatar : $r('app.media.background'))
+            .width(60)
+            .height(60)
+            .borderRadius(30)
+            .margin({ right: 15 })
+
+          Column() {
+            if (this.userInfo.isLogin) {
+              Text(this.userInfo.nickName)
+                .fontSize(20)
+                .fontColor('#333')
+                .margin({ bottom: 5 })
+
+              Text(this.userInfo.phone)
+                .fontSize(14)
+                .fontColor('#666')
+            } else {
+              Button('点击登录', { type: ButtonType.Capsule })
+                .backgroundColor('#07c160')
+                .fontColor('#ffffff')
+                .onClick(() => this.loginAction())
+            }
+          }
+          .alignItems(HorizontalAlign.Start)
+        }
+        .width('100%')
+        .padding(20)
+        .backgroundColor('#ffffff')
+        .borderRadius(10)
+        .shadow({ radius: 4, color: '#00000010', offsetX: 1, offsetY: 1 })
+      }
+      .width('90%')
+      .margin({ top: 20 })
 
       // 订单状态区域
       Column() {
@@ -185,7 +241,42 @@ export struct MinePage {
       .borderRadius(10)
       .shadow({ radius: 4, color: '#00000010', offsetX: 1, offsetY: 1 })
 
-      // ... 其他部分保持不变 ...
+      // 退出登录按钮
+      Button('退出登录', { type: ButtonType.Normal })
+        .width('90%')
+        .height(40)
+        .margin({ top: 20, bottom: 20 })
+        .backgroundColor('#ff3b30')
+        .fontColor('#ffffff')
+        .borderRadius(8)
+        .onClick(() => this.showLogoutConfirm())
+
+      // 退出登录确认弹窗
+      if (this.showLogoutDialog) {
+        // AlertDialog({
+        //   title: '提示',
+        //   message: '确定要退出登录吗？',
+        //   confirm: {
+        //     value: '确定',
+        //     action: () => this.confirmLogout()
+        //   },
+        //   cancel: () => {
+        //     this.showLogoutDialog = false
+        //   }
+        // })
+      }
+
+      // 关于我们弹窗
+      if (this.showAboutDialog) {
+        // AlertDialog({
+        //   title: '关于我们',
+        //   message: '版本号：1.0.0\n公司名称：示例公司\n联系方式：400-800-8820',
+        //   confirm: {
+        //     value: '确定',
+        //     action: () => this.showAboutDialog = false
+        //   }
+        // })
+      }
     }
     .width('100%')
     .height('100%')
