@@ -4,6 +4,8 @@
     "pages/SearchPage",
     "pages/DetailPage",
     "pages/LoginPage",
-    "pages/RegisterPage"
+    "pages/RegisterPage",
+    "views/MinePage"
+
   ]
 }

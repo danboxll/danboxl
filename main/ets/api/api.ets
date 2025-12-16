@@ -208,3 +208,17 @@ export const removeShopbagData = async (params: RemoveShopbagParams) => {
   })
 }
 
+//获取登录用户信息
+export const getUserInfo = async (token: string) => {
+  return await httpRequest.request(`${baseUrl}/findMy`, {
+    // 请求类型
+    method: http.RequestMethod.GET,
+    // 如果是POST请求，参数可以为一个对象
+    extraData: {
+      token
+    },
+    // 期望返回的数据类型
+    expectDataType: http.HttpDataType.OBJECT
+  })
+}
+//修改
