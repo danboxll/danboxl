@@ -22,7 +22,7 @@ struct RegisterPage {
     let phoneReg: RegExp = new RegExp('^1[3-9]\\d{9}$')
     if(!phoneReg.test(this.phone)){
       console.log('手机号格式错误')
-    return
+      return
     }
     //定义密码正则，并校验密码是否正确
     let passwordReg: RegExp = new RegExp('^[A-Za-z][A-Za-z0-9]{5,15}$')
@@ -125,7 +125,7 @@ struct RegisterPage {
               .type(InputType.Password)
               .onChange((value: string) => {
                 this.password = value
-            })
+              })
           }
           .width('100%')
           .alignItems(VerticalAlign.Center)

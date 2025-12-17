@@ -27,7 +27,7 @@ export struct ShopbagPage {
       // 如果sid不存在，则添加
       this.selectedShopbagSid.push(sid)
     } else {
-       // 如果sid存在，则删除
+      // 如果sid存在，则删除
       this.selectedShopbagSid.splice(index,1)
     }
     console.log('this.selectedshopbagSid ==>', JSON.stringify(this.selectedShopbagSid))
@@ -102,36 +102,36 @@ export struct ShopbagPage {
     //1.删除数据库的数据
     //2.删除页面的数据
     //3.删除selectedShopbagsid数组的数据
-      let params: RemoveShopbagParams = {
-        sids: JSON.stringify(this.selectedShopbagSid),
-        token: this.token
-      }
-      let data: Object = await removeShopbagData(params)
-      console.log('删除购物袋数据 data ==>', JSON.stringify(data))
-
-      if (Object(data).result.code == 700) {
-        return router.pushUrl({
-          url: 'pages/LoginPage'
-        })
-      }
-      if (Object(data).result.code == 7000) {
-        //删除页面的购物袋数据
-        this.selectedShopbagSid.forEach((sid: string) =>{
-          for(let i = 0; i < this.shopbagData.length; i++){
-            if(Object(this.shopbagData[i]).sid == sid){
-              this.shopbagData.splice(i,1)
-              break
-            }
-          }
-        })
-        this.shopbagData =[...this.shopbagData]
-        this.selectedShopbagSid = []
-
-        this.total = '0.00'
-      }
+    let params: RemoveShopbagParams = {
+      sids: JSON.stringify(this.selectedShopbagSid),
+      token: this.token
     }
+    let data: Object = await removeShopbagData(params)
+    console.log('删除购物袋数据 data ==>', JSON.stringify(data))
 
-    //计算勾选商品的总金额
+    if (Object(data).result.code == 700) {
+      return router.pushUrl({
+        url: 'pages/LoginPage'
+      })
+    }
+    if (Object(data).result.code == 7000) {
+      //删除页面的购物袋数据
+      this.selectedShopbagSid.forEach((sid: string) =>{
+        for(let i = 0; i < this.shopbagData.length; i++){
+          if(Object(this.shopbagData[i]).sid == sid){
+            this.shopbagData.splice(i,1)
+            break
+          }
+        }
+      })
+      this.shopbagData =[...this.shopbagData]
+      this.selectedShopbagSid = []
+
+      this.total = '0.00'
+    }
+  }
+
+  //计算勾选商品的总金额
   private sum = () => {
     let total: number = 0
     this.shopbagData.forEach((item: Object) => {
@@ -207,8 +207,8 @@ export struct ShopbagPage {
                   .size({ width:20,height:20 })
                   .selectedColor('#0E33B7')
                   .onClick(():void => {
-                  this.selectOne(Object(item).sid)
-                })
+                    this.selectOne(Object(item).sid)
+                  })
 
                 Column() {
                   // 商品图片
@@ -329,16 +329,16 @@ export struct ShopbagPage {
               .fontWeight(FontWeight.Bold)
 
             Text('提交订单')
-                .fontSize(16)
-                .fontColor('#ffffff')
-                .backgroundColor('#0E33B7')
-                .padding({
-                  left: 10,
-                  right: 10,
-                  top: 10,
-                  bottom: 10
-                })
-                .borderRadius(5);
+              .fontSize(16)
+              .fontColor('#ffffff')
+              .backgroundColor('#0E33B7')
+              .padding({
+                left: 10,
+                right: 10,
+                top: 10,
+                bottom: 10
+              })
+              .borderRadius(5);
           }
         }
 

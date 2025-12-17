@@ -83,3 +83,13 @@ export interface MinePageUserInfo {
   background: string;  // 背景图
 }
 
+export interface updateNickName{
+  token: string;
+  nickName: string;
+}
+
+export interface updatePassword{
+  token: string;
+  password: string;
+  oldPassword: string;
+}

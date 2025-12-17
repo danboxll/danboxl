@@ -84,12 +84,12 @@ export struct MenuPage{
                 .justifyContent(FlexAlign.Center)
                 .onClick(() =>{
                   console.log('切换商品类型')
-                    if (this.selectedTypeIndex == index){
-                      return;
-                    }
-                    this.selectedTypeIndex = index;
+                  if (this.selectedTypeIndex == index){
+                    return;
+                  }
+                  this.selectedTypeIndex = index;
                   //根据商品类型获取商品数据
-                    this.getProdyctDataByType();
+                  this.getProdyctDataByType();
 
                 })
               })
@@ -104,27 +104,27 @@ export struct MenuPage{
         //商品列表
         Column() {
           Scroll(){
-          Column() {
-            Flex({ wrap: FlexWrap.Wrap }) {
-              ForEach(this.productData,(item: Object, index: number) =>{
-                Column(){
-                  Product({pro:item})
-                }
-                .width('calc(50% - 5vp)')
-                .margin({right: index % 2 == 0 ? 10 : 0, bottom: 10})
-                .onClick(():void =>{
-                  this.viewProductDetail(Object(item).pid)
+            Column() {
+              Flex({ wrap: FlexWrap.Wrap }) {
+                ForEach(this.productData,(item: Object, index: number) =>{
+                  Column(){
+                    Product({pro:item})
+                  }
+                  .width('calc(50% - 5vp)')
+                  .margin({right: index % 2 == 0 ? 10 : 0, bottom: 10})
+                  .onClick(():void =>{
+                    this.viewProductDetail(Object(item).pid)
+                  })
                 })
-              })
 
+              }
+              .width('100%')
+              .padding({ left: 10, right: 10 })
             }
             .width('100%')
-            .padding({ left: 10, right: 10 })
           }
-          .width('100%')
-        }
 
-      }
+        }
         .width('calc(100% - 80vp)')// 使用权重占据剩余空间
         .height('100%')
         .backgroundColor('#fff')

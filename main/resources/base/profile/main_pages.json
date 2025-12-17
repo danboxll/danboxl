@@ -5,7 +5,11 @@
     "pages/DetailPage",
     "pages/LoginPage",
     "pages/RegisterPage",
-    "views/MinePage"
-
+    "pages/CustomerServicePage",
+    "pages/OrderPage",
+    "pages/CollectPage",
+    "pages/AddressPage",
+    "pages/AboutPage",
+    "pages/SettingPage"
   ]
 }

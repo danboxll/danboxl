@@ -54,9 +54,9 @@ struct DetailPage {
         url: 'pages/LoginPage'
       })
     }else if(Object(data).result.code ==800){
-    this.isLike = true
+      this.isLike = true
     }else if(Object(data).result.code == 900){
-    this.isLike = false
+      this.isLike = false
     }
   }
 
@@ -90,7 +90,7 @@ struct DetailPage {
     //获取token
     this.token = getData('token6') as string
 
-  //截取参数
+    //截取参数
     let pid: string = Object(router.getParams()).pid;
     console.log('商品详情页面 pid ==>',pid)
 
@@ -129,8 +129,8 @@ struct DetailPage {
     descData.forEach((item:string)=>{
       if (item.trim()){
         newDescData.push(item)
-    }
-  })
+      }
+    })
 
     Object(result).descData=newDescData
 

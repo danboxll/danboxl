@@ -25,7 +25,7 @@ export struct StepperComponent {
         .fontColor('#333')
         .textAlign(TextAlign.Center)
 
-        //加数量图标(名称:add)
+      //加数量图标(名称:add)
       Image($r('app.media.jiahao'))
         .width(24)
         .height(24)
@@ -33,5 +33,5 @@ export struct StepperComponent {
           this.onCountChange(1)
         })
     }
-      .alignItems(VerticalAlign.Center);
+    .alignItems(VerticalAlign.Center);
   }}

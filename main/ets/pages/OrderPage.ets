@@ -1,7 +1,7 @@
 import { router } from "@kit.ArkUI";
 @Entry
 @Component
-export struct CollectPage {
+export struct OrderPage {
   private goBack = () => {
     router.back();
   }
@@ -16,7 +16,7 @@ export struct CollectPage {
           .margin({ right: 10 })
           .onClick(this.goBack);
 
-        Text('我的收藏')
+        Text('我的订单')
           .fontSize(18)
           .fontWeight(FontWeight.Bold)
           .fontColor('#333333')
@@ -34,16 +34,16 @@ export struct CollectPage {
         .strokeWidth(1)
         .color('#E5E5E5');
 
-      // 收藏内容区域
+      // 订单内容区域
       Scroll() {
         Column() {
-          Text('暂无收藏')
+          Text('暂无订单')
             .fontSize(16)
             .fontColor('#666666')
             .margin({ top: 50 })
             .textAlign(TextAlign.Center);
 
-          Text('您还没有收藏任何商品')
+          Text('您还没有任何订单记录')
             .fontSize(14)
             .fontColor('#999999')
             .margin({ top: 10 })

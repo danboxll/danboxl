@@ -1,7 +1,9 @@
 // src/main/ets/api/api.ts
 import { http } from '@kit.NetworkKit'
 import { RegisterParams, LoginParams, LikeParams, ShopbagParams,ShopbagCountParams,
-  RemoveShopbagParams,UserInfoParams,UserInfoData } from '../paramsInterface/paramsInterface'
+  RemoveShopbagParams,UserInfoParams,UserInfoData,
+  updateNickName,
+  updatePassword} from '../paramsInterface/paramsInterface'
 
 let httpRequest = http.createHttp()
 
@@ -221,4 +223,88 @@ export const getUserInfo = async (token: string) => {
     expectDataType: http.HttpDataType.OBJECT
   })
 }
-//修改
+//个人资料接口
+//   请求地址：http://127.0.0.1:7001/findAccountInfo
+//   请求类型： GET
+//   请求参数： {
+//     token: token字符串
+//   }
+export const getUserInfoData = async (token: string) => {
+  return await httpRequest.request(`${baseUrl}/findAccountInfo`, {
+    // 请求类型
+    method: http.RequestMethod.GET,
+    // 如果是POST请求，参数可以为一个对象
+    extraData: {
+      token
+    },
+    // 期望返回的数据类型
+    expectDataType: http.HttpDataType.OBJECT
+  })
+}
+//修改昵称接口
+//   请求地址：http://127.0.0.1:7001/updateNickName
+//   请求类型： POST
+//   请求参数： {
+//     token: token字符串,
+//     nickName: 你的昵称
+//   }
+export const setUserInfoData = async (params: updateNickName) => {
+  return await httpRequest.request(`${baseUrl}/updateNickName`, {
+    // 请求类型
+    method: http.RequestMethod.POST,
+    // 如果是POST请求，参数可以为一个对象
+    extraData: JSON.stringify(params),
+    // 请求头
+    header: {
+      'Content-Type': 'application/json'
+    },
+    // 期望返回的数据类型
+    expectDataType: http.HttpDataType.OBJECT
+  })
+}
+
+//修改简介接口
+//   请求地址：http://127.0.0.1:7001/updateDesc
+//   请求类型： POST
+//   请求参数： {
+//     token: token字符串,
+//     desc: 简介
+//   }
+export const setUserDesc = async (params: updateNickName) => {
+  return await httpRequest.request(`${baseUrl}/updateDesc`, {
+    // 请求类型
+    method: http.RequestMethod.POST,
+    // 如果是POST请求，参数可以为一个对象
+    extraData: JSON.stringify(params),
+    // 请求头
+    header: {
+      'Content-Type': 'application/json'
+    },
+    // 期望返回的数据类型
+    expectDataType: http.HttpDataType.OBJECT
+  })
+}
+
+//修改密码接口
+//   请求地址：http://127.0.0.1:7001/updatePassword
+//   请求类型： POST
+//   请求参数： {
+//     token: token字符串,
+//     password: 新密码
+//     oldPassword: 旧密码
+//   }
+
+export const setUserPassword = async (params: updatePassword) => {
+  return await httpRequest.request(`${baseUrl}/updatePassword`, {
+    // 请求类型
+    method: http.RequestMethod.POST,
+    // 如果是POST请求，参数可以为一个对象
+    extraData: JSON.stringify(params),
+    // 请求头
+    header: {
+      'Content-Type': 'application/json'
+    },
+    // 期望返回的数据类型
+    expectDataType: http.HttpDataType.OBJECT
+  })
+}

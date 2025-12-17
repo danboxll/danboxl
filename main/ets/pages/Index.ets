@@ -1,3 +1,4 @@
+
 import {HomePage} from '../views/HomePage'
 import {MenuPage} from '../views/MenuPage'
 import {ShopbagPage} from '../views/ShopbagPage'
@@ -46,7 +47,7 @@ struct Index {
         .fontSize(14)
         .margin({top:2})
         .fontColor(this.selectedIndex == index ?'#0E33B7':'#646567')
-  }
+    }
   }
 
   aboutToAppear(): void {
@@ -69,7 +70,7 @@ struct Index {
               //显示MenuPage
               MenuPage()
             }else if(this.selectedIndex==2){
-                //显示ShopbagPage
+              //显示ShopbagPage
               ShopbagPage()
             } else {
               //显示MinePage
